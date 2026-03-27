@@ -1,38 +1,27 @@
-# Third-party modules
-from PySide2 import QtCore, QtWebEngineWidgets, QtWidgets
+# Third-party modules - PySide6に書き換え
+from PySide6 import QtCore, QtWebEngineCore, QtWebEngineWidgets
 
+# クラス定義の継承元を QtWebEngineCore に変更します
+class CustomWebPage(QtWebEngineCore.QWebEnginePage):
+    """Custom QWebEnginePage that catches data from the JavaScript console."""    
 
-class CustomWebPage(QtWebEngineWidgets.QWebEnginePage):
-    """Custom QWebEnginePage that catches data from the JavaScript console.
-
-    This allows us to read variables that are only stored in the browser,
-    such as the 'access_token' used by Mixamo. We'll then use that token
-    as an 'Authentication' header when sending HTTP Requests to its API.
-    """    
-
+    # PySide6でのシグナル定義
     retrieved_token = QtCore.Signal(str)
 
     def __init__(self, *args, **kwargs):        
         super().__init__(*args, **kwargs)
 
-        # Reimplement the javaScriptConsoleMessage method.
-        self.javaScriptConsoleMessage = self.handle_console_message
-
-    def handle_console_message(self, level, message, lineNumber, sourceID):
-        """This method decides what to do with console messages.
-
-        :param level: Severity level a JavaScript console message can have
-        :type level: QWebEnginePage.JavaScriptConsoleMessageLevel
-
-        :param message: Message printed to the console
-        :type message: str
-
-        :param lineNumber: Line number where the message was printed
-        :type lineNumber: int
-
-        :param sourceID: Source ID
-        :type sourceID: str
+    def javaScriptConsoleMessage(self, level, message, lineNumber, sourceID):
         """
+        PySide6(Qt6)では、メソッドを直接 self.javaScriptConsoleMessage に
+        代入するのではなく、このようにメソッド自体をオーバーライドします。
+        """
+        # コンソールメッセージに "ACCESS TOKEN" が含まれているかチェック
         if "ACCESS TOKEN" in message:
+            # メッセージからトークン部分を抽出
             access_token = message.split(":")[-1].strip()
+            # シグナルを飛ばしてUI側に伝える
             self.retrieved_token.emit(access_token)
+        
+        # デバッグ用に通常のコンソール出力も維持したい場合は継承元を呼ぶ（任意）
+        # super().javaScriptConsoleMessage(level, message, lineNumber, sourceID)
