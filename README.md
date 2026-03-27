@@ -25,7 +25,9 @@ If you don't have Python installed on your computer or you don't want to mess wi
 
 
 =============================
+
 以下、独自改良点に関する説明
+
 =============================
 
 
