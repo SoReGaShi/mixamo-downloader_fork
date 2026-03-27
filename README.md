@@ -24,9 +24,9 @@ If you don't have Python installed on your computer or you don't want to mess wi
 4. You can optionally set an output folder where all animations will be saved.
 
 
-================================================================================
+=============================
 以下、独自改良点に関する説明
-================================================================================
+=============================
 
 
 📝 開発備忘録：安定性と利便性のための大幅アップデート (2026/03)
