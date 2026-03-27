@@ -23,6 +23,14 @@ If you don't have Python installed on your computer or you don't want to mess wi
 3. Choose between downloading `All animations`, `Animations containing the word` and the `T-Pose (with skin)`.
 4. You can optionally set an output folder where all animations will be saved.
 
+   > If no output folder is set, FBX files will be downloaded to the folder where the program is running.
+  
+5. Press the `Start download` button and wait until it's done.
+6. You can cancel the process at any time by pressing the `Stop` button.
+
+> [!IMPORTANT]
+> Downloading all animations can be quite slow. We're dealing with a total of 2346 animations, so don't expect it to be lighting fast.
+
 
 =============================
 
@@ -66,10 +74,3 @@ HTTP 202 (Accepted) の正当な処理: サーバーが生成中を返す「202�
 
 
 
-   > If no output folder is set, FBX files will be downloaded to the folder where the program is running.
-  
-5. Press the `Start download` button and wait until it's done.
-6. You can cancel the process at any time by pressing the `Stop` button.
-
-> [!IMPORTANT]
-> Downloading all animations can be quite slow. We're dealing with a total of 2346 animations, so don't expect it to be lighting fast.
